@@ -1,0 +1,64 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "discription": "typicode",
+      "task_status": "todo",
+      "tags": [
+        "Personal",
+        "Official"
+      ],
+      "subTasks": [
+        {
+          "subTaskTitle": "Task 1 : ",
+          "Status": true
+        },
+        {
+          "subTaskTitle": "Task 2 : ",
+          "Status": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "json-server",
+      "discription": "typicode",
+      "task_status": "done",
+      "tags": [
+        "Personal",
+        "Official"
+      ],
+      "subTasks": [
+        {
+          "subTaskTitle": "Task 1 : ",
+          "Status": true
+        },
+        {
+          "subTaskTitle": "Task 2 : ",
+          "Status": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "json-server",
+      "discription": "typicode",
+      "task_status": "progress",
+      "tags": [
+        "Personal",
+        "Official"
+      ],
+      "subTasks": [
+        {
+          "subTaskTitle": "Task 1 : ",
+          "Status": true
+        },
+        {
+          "subTaskTitle": "Task 2 : ",
+          "Status": false
+        }
+      ]
+    }
+  ]
+}
