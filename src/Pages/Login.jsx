@@ -28,6 +28,9 @@ export default function Login() {
       navigate("/", { replace: true });
     }
   }, [isAuth, navigate]);
+useEffect(() => {
+  document.title="Redux CRUD App | Login"
+}, [])
 
   const handlelogin = (e) => {
     const { name, value } = e.target;

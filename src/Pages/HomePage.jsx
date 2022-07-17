@@ -11,7 +11,9 @@ export const HomePage = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const [listofItems, setList] = useState(searchParams.getAll("tags") || []);
-
+  useEffect(() => {
+    document.title="Redux CRUD App"
+  }, [])
   useEffect(() => {
     const dataList = searchParams.getAll("tags");
     setList(dataList);
@@ -22,7 +24,7 @@ export const HomePage = () => {
   }, [dispatch]);
   const listOfState = ["Todo", "In-Progress", "Done"];
   const color = ["green", "yellow", "blue"];
-  const sdsjds = todos.filter((el,i) => el.tags.includes(listofItems[i]));
+  const sdsjds = todos.filter((el,i) => el.tags.includes(""));
   console.log(sdsjds);
   return (
     <Box bg="pink">
@@ -48,7 +50,7 @@ export const HomePage = () => {
                 todos
 
                   .filter((item) => item.task_status === el)
-                  .filter((el) => el.tags.includes(listofItems))
+       
                   .map((item) => <TodoItem key={item.id} {...item} />)}
             </Box>
           </Grid>

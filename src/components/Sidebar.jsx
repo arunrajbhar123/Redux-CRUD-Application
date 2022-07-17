@@ -12,13 +12,13 @@ const Sidebar = () => {
     dispatch(logoutSuccess());
   };
   const userData = useSelector((state) => state.AuthReducer.userDetails);
-  
+
   useEffect(() => {
     dispatch(getUserDetails("masai-school"));
   }, [dispatch]);
 
   const todoslist = useSelector((state) => state.AppReducer.todos);
-console.log(todoslist);
+
   let progressCount = todoslist.filter(
     (item) => item.task_status === "In-Progress"
   );
@@ -62,7 +62,7 @@ console.log(todoslist);
             </Box>
           </Flex>
         </Box>
-        <Box border="1px solid black" width="250px" height="50vh">
+        <Box border="1px solid black" width="100%" height="50vh">
           <Box p="3">
             <Flex justifyContent="space-between" bg="blue.100" mt="1" p="2">
               <Text onClick={() => handleFilter("All")}>All</Text>

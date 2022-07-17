@@ -30,6 +30,9 @@ export default function Signup() {
   const isAuth = useSelector((state) => state.AuthReducer.isAuth);
 
   useEffect(() => {
+    document.title="Redux CRUD App | Signup"
+  }, [])
+  useEffect(() => {
     if (isAuth) {
     
       navigate("/");

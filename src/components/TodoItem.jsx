@@ -2,6 +2,7 @@ import { Box, Text, Badge, Checkbox, Flex } from "@chakra-ui/react";
 import { EditIcon } from "@chakra-ui/icons";
 const TodoItem = ({ id, title, discription, task_status, tags, subTasks }) => {
   const colorTags = ["green", "yellow", "blue"];
+  
   return (
     <Box
       border={"1px solid #111"}
