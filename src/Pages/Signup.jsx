@@ -31,7 +31,7 @@ export default function Signup() {
 
   useEffect(() => {
     if (isAuth) {
-      console.log("adf");
+    
       navigate("/");
     }
   }, [isAuth, navigate]);

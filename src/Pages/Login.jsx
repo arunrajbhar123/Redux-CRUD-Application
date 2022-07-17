@@ -13,24 +13,21 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useState ,useEffect} from "react";
-import { useDispatch,useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { getLogin } from "../Redux/AuthReducer/action.js";
 import { LOGIN_SUCCESS } from "./../Redux/AuthReducer/action.type";
 export default function Login() {
   const [user, setUser] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
-const isAuth=useSelector((state)=>state.AuthReducer.isAuth);
+  const isAuth = useSelector((state) => state.AuthReducer.isAuth);
 
   useEffect(() => {
-    if(isAuth){
-    
-      navigate('/' ,{replace:true}) 
-   }
-  }, [])
-  
-
+    if (isAuth) {
+      navigate("/", { replace: true });
+    }
+  }, [isAuth, navigate]);
 
   const handlelogin = (e) => {
     const { name, value } = e.target;

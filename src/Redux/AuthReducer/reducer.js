@@ -1,11 +1,13 @@
 import * as types from "./action.type.js";
-import { saveData } from "../../utils/LocalStorage";
+import { saveData, loadData } from "../../utils/LocalStorage";
+
 const inialState = {
-  isAuth: false,
-  token:  "",
+  isAuth: loadData("isAuth") || false,
+  token: loadData("token") || "",
   isLoading: false,
   isError: false,
   isRegister: false,
+  userDetails: loadData("dataUser") || [],
 };
 export const reducer = (state = inialState, { type, payload }) => {
   switch (type) {
@@ -56,6 +58,28 @@ export const reducer = (state = inialState, { type, payload }) => {
         isLoading: false,
         isAuth: false,
         token: "",
+      };
+
+    case types.GET_USER_DETAILS_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case types.GET_USER_DETAILS_SUCCESS:
+      saveData("dataUser", payload);
+  
+      return {
+        ...state,
+        isLoading: false,
+        userDetails: payload,
+      };
+    case types.GET_USER_DETAILS_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        userDetails: "",
+        isError: true,
       };
 
     default:

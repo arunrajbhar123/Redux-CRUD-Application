@@ -1,42 +1,58 @@
 import Sidebar from "./../components/Sidebar";
-import { Box, HStack, Container, Stack } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { Box, HStack, Grid, Text } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getTodoGet } from "../Redux/AppReducer/action.js";
 import TodoItem from "./../components/TodoItem";
+import { useSearchParams } from "react-router-dom";
 
 export const HomePage = () => {
   const todos = useSelector((state) => state.AppReducer.todos);
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const [listofItems, setList] = useState(searchParams.getAll("tags") || []);
+
+  useEffect(() => {
+    const dataList = searchParams.getAll("tags");
+    setList(dataList);
+  }, [searchParams]);
 
   useEffect(() => {
     dispatch(getTodoGet());
   }, [dispatch]);
-
+  const listOfState = ["Todo", "In-Progress", "Done"];
+  const color = ["green", "yellow", "blue"];
+  const sdsjds = todos.filter((el,i) => el.tags.includes(listofItems[i]));
+  console.log(sdsjds);
   return (
-    <Box bg="pink" w="100%">
+    <Box bg="pink">
       <HStack>
         <Sidebar />
-        <Stack direction="row" textAlign="center" width="100%" spacing="25px">
-          <Box border="1px solid red" w="100%" h="100vh">
-            {todos.length > 0 &&
-              todos
-                .filter((item) => item.task_status === "todo")
-                .map((item) => <TodoItem key={item.id} />)}
-          </Box>
-          <Box border="1px solid red" w="100%" h="100vh">
-            {todos.length > 0 &&
-              todos
-                .filter((item) => item.task_status === "progress")
-                .map((item) => <TodoItem key={item.id} />)}
-          </Box>
-          <Box border="1px solid red" w="100%" h="100vh">
-            {todos.length > 0 &&
-              todos
-                .filter((item) => item.task_status === "done")
-                .map((item) => <TodoItem key={item.id} />)}
-          </Box>
-        </Stack>
+
+        {listOfState?.map((el, index) => (
+          <Grid
+            textAlign="center"
+            w="100%"
+            templateColumns="repeat(3, 1fr)"
+            key={index}
+          >
+            <Box border="1px solid red" w="350px" h="100vh">
+              <Text
+                bg={`${color[index]}.100`}
+                p="3"
+                textTransform={"uppercase"}
+              >
+                {el}
+              </Text>
+              {todos.length > 0 &&
+                todos
+
+                  .filter((item) => item.task_status === el)
+                  .filter((el) => el.tags.includes(listofItems))
+                  .map((item) => <TodoItem key={item.id} {...item} />)}
+            </Box>
+          </Grid>
+        ))}
       </HStack>
     </Box>
   );
